@@ -3,8 +3,6 @@
 ## Changelog
 (most recent first)
 
-Placeholder:
-
 ### v0.1.0 2025-01-26:
 * A first release prior to a possible commit to a new GitHub repo.
 * None of the preceding iterations have been version managed in git, none backed up anywhere yet.
