@@ -1,3 +1,16 @@
+# The files to ignore for this app
+# The masto_app_token.txt file must not be made public, the rest won't cause issues.
+masto_app_token.txt
+masto_instance.txt
+rsssource.txt
+rssupdatemasto_base.txt
+rssupdatemasto_new.txt
+testing_delete_rssupdatemasto_base.txt
+testing_delete_rssupdatemasto_new.txt
+.DS_Store
+
+# The default Python .gitignore startes below
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
