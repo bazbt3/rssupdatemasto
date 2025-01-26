@@ -25,7 +25,7 @@ Application is currently being tested on my Mac. Whilst it can run standalone it
 
 Note: the code can be run with minor modifications to alert independently of a Mastodon account, but it's been years since I did any actual coding, sorry I can't help there.
 
-Moreover, each time I run the code the following warning appears, one I've not worked out how to fix and certainly one for which I have not created an exception.
+An aside: Each time I ran the code the following warning appeared:
 
 ```
 /Users/user/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
@@ -34,6 +34,8 @@ Moreover, each time I run the code the following warning appears, one I've not w
 
 Painful, isn't it.
 
-OK, I did some digging and it appears that it's a known issue - urllib3 does not play nicely with the Python supplied by Apple - a GitHub issue here: [urllib3>=2.0 does not work with system Python on macOS](https://github.com/urllib3/urllib3/issues/3020).
+I did some digging and it appears that it's a known issue - urllib3 does not play nicely with the Python supplied by Apple - a GitHub issue here: [urllib3>=2.0 does not work with system Python on macOS](https://github.com/urllib3/urllib3/issues/3020).
 
-Well, I've successfully installed Python 3.13.1 from here: https://www.python.org/downloads/
+Well, I've successfully installed Python 3.13.1 from here and the error goes away: https://www.python.org/downloads/
+
+... to be replaced by another, fixed in the 0.1.0 release.
