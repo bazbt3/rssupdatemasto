@@ -3,12 +3,16 @@
 ## Changelog
 (most recent first)
 
+### v0.1.2 2025-01-27:
+* Removed print of feed text added when run during debugging.
+* Added partial explanation of reason for use of `requests`.
+
 ### v0.1.1 2025-01-27:
 * Removed the date completely from the post.
 * Added '\#NFL' & '\#Browns' tags for visibility.
 
 ### v0.1.0 2025-01-26:
-* A first release prior to a possible commit to a new GitHub repo.
+* A first release prior to committing to a new GitHub repo.
 * None of the preceding iterations have been version managed in git, none backed up anywhere yet.
 * Must be careful to not upload the configuration and working files, **especially the access token**.
 

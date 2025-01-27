@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.1.1 for Python 3
+# v0.1.2 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -26,10 +26,8 @@ rssfile = open("rsssource.txt", "r")
 rsssource = rssfile.read()
 rsssource = rsssource.strip()
 feed_title = rsssource
+# The 'requests...headers=' was added because Reddit requires headers.
 d = feedparser.parse(requests.get(feed_title, headers={'User-Agent': 'Mozilla/5.0'}).content)
-
-print(d) ### debugging ###
-
 # Extract the most recent feed post's title, link & published date:
 p_title = d.entries[0].title
 p_link = d.entries[0].link
