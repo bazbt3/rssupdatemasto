@@ -8,7 +8,7 @@ Application is currently being tested on my Mac. Whilst it can run standalone it
 ### Prerequisites:
 * A Mastodon account.
 * A new 'application' must be created at your instance for your Python script - created whilst signed in. Go to `https://YourInstanceName/settings/applications/` and press the 'New application' button. Take educated guesses based on reading the help found elsewhere. You only need two Scopes checked: `write:statuses` and *(maybe!)* `profile`.
-* `masto_app_token.txt` - a file containing the Mastodon application token - only one line. **This token which MUST remain secret from others**. (It is read from a separate file to give some portability to the code.
+* `masto_app_token.txt` - a file containing the Mastodon application token - only one line. **This token MUST remain secret from others**. (It is read from a separate file to give some portability to the code.
 * `masto_instance.txt` - a file containing the Mastodon instance address to post to - only one line.
 * `rsssource.txt` - a file containing only the RSS feed address - only one line.
 
