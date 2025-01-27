@@ -66,7 +66,7 @@ p_last = dateutil.parser.parse(p_last)
 p_latest = dateutil.parser.parse(p_latest)
 masto_message = ''
 if p_latest > p_last:
-	masto_message = 'My new Reddit post:\n' + p_title + '\n' + p_link + '\n' + '\n' + '#NFL #BROWNS'
+	masto_message = 'My new Reddit post:\n' + p_title + '\n' + p_link + '\n' + '\n' + '#NFL #Browns'
 	basefile_w = open('rssupdatemasto_base.txt', 'w')
 	basefile_w.write(p_publish)
 	basefile_w.close()
