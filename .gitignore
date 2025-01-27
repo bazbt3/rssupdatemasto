@@ -9,7 +9,7 @@ testing_delete_rssupdatemasto_base.txt
 testing_delete_rssupdatemasto_new.txt
 .DS_Store
 
-# The default Python .gitignore startes below
+# The default Python .gitignore starts below
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
