@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.1.0 for Python 3
+# v0.1.1 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -66,7 +66,7 @@ p_last = dateutil.parser.parse(p_last)
 p_latest = dateutil.parser.parse(p_latest)
 masto_message = ''
 if p_latest > p_last:
-	masto_message = 'My new Reddit post:\n' + p_title + '\n' + p_link + '\n' + p_publish
+	masto_message = 'My new Reddit post:\n' + p_title + '\n' + p_link + '\n' + '\n' + '#NFL #BROWNS'
 	basefile_w = open('rssupdatemasto_base.txt', 'w')
 	basefile_w.write(p_publish)
 	basefile_w.close()

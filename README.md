@@ -7,21 +7,17 @@ Application is currently being tested on my Mac. Whilst it can run standalone it
 
 ### Prerequisites:
 * A Mastodon account.
-* A Mastodon application token - **a token which MUST remain secret from others**, read from a separate file here to give some portability to the code:
- * `masto_app_token.txt`.
-* A Mastodon instance address - read from a file again:
- * `masto_instance.txt`.
-* A feed address - read from a file again:
- * `rsssource.txt`.
-* Having the latest version of Python at least installed and available will help a lot when you're using this. The Apple version will not allow some of the modules it needs to run.
-* The Mastodon libraries: `pip3 install mastodon.py`.
-* The feedparser RSS, er… feed parser: `pip3 install feedparser`.
+* `masto_app_token.txt` - a file containing the Mastodon application token - only one line. **This token which MUST remain secret from others**. (It is read from a separate file to give some portability to the code.
+* `masto_instance.txt` - a file containing the Mastodon instance address to post to - only one line.
+* `rsssource.txt` - a file containing only the RSS feed address - only one line.
+
+Having the latest version of Python at least installed and available will help a lot when you're using this. The Apple version will not allow some of the modules it needs to run.
+* I had to install the Mastodon module, so: `pip3 install mastodon.py`.
+* My Python also did not have the feedparser module, so: `pip3 install feedparser`.
 
 ### The code itself creates 2 more files, both of which can be safely removed *while testing*, but which are necessary to retain a history:
-* The title, URL and posting date of the latest post found online:
- * `rssupdatemasto_new.txt`.
-* The most recent post date, retained to check if any later posts appear:
- * `rssupdatemasto_base.txt`.
+* `rssupdatemasto_new.txt` - the title, URL and posting date of the latest RSS post.
+* `rssupdatemasto_base.txt` - the most recent post date, which must be retained to check if any later posts appear.
 
 Note: the code can be run with minor modifications to alert independently of a Mastodon account, but it's been years since I did any actual coding, sorry I can't help there.
 
