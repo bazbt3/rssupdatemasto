@@ -27,7 +27,7 @@ To periodically run the script I created a 'cron job' by making a 'crontab' file
 
 At the time of writing honestly I don't know if it will work.
 
-Narrator: it did not work. On  Mac one has to add cron to the list of 'Full disk access apps'. I'll check it again in a bit.
+Narrator: it did not work. On a Mac one has to add cron to the list of 'Full disk access apps' - [Crontab Operation not permitted](https://apple.stackexchange.com/questions/378553/crontab-operation-not-permitted/378558#378558) (*StackExchange*).
 
 --- 
 
@@ -40,7 +40,7 @@ An aside: Each time I ran the code the following warning appeared:
 
 Painful, isn't it.
 
-I did some digging and it appears that it's a known issue - urllib3 does not play nicely with the Python supplied by Apple - a GitHub issue here: [urllib3>=2.0 does not work with system Python on macOS](https://github.com/urllib3/urllib3/issues/3020).
+I did some digging and it appears that it's a known issue - urllib3 does not play nicely with the Python supplied by Apple - a GitHub issue here: [urllib3>=2.0 does not work with system Python on macOS](https://github.com/urllib3/urllib3/issues/3020) (*GitHub*).
 
 Well, I've successfully installed Python 3.13.1 from here and the error goes away: https://www.python.org/downloads/
 
