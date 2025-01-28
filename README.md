@@ -25,7 +25,9 @@ Note: the code can be run with minor modifications to alert independently of a M
 To periodically run the script I created a 'cron job' by making a 'crontab' file on my always-on Mac. It should run every 3 hours starting at midnight. To create it I had to use the vi editor which was an experience in itself. Anyway, here it is:    
 `0 0,3,6,9,12,15,18,21 * * * cd ~/coding/rssupdatemasto/rssupdatemasto; python3 rssupdatemasto.py`
 
-No, it's not pretty, and at the time of writing honestly I don't know if it will work.
+At the time of writing honestly I don't know if it will work.
+
+Narrator: it did not work. On  Mac one has to add cron to the list of 'Full disk access apps'. I'll check it again in a bit.
 
 --- 
 
