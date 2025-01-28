@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.1.3 2025-01-28:
+* Trying to fix the non-display of the hashtags, removed a newline from the post output and changed the quote type from '#NFL #Browns' to "#NFL #Browns".
+
 ### v0.1.2 2025-01-27:
 * Removed print of feed text added when run during debugging.
 * Added partial explanation of reason for use of `requests`.
