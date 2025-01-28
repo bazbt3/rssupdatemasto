@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.1.4 2025-01-28:
+* Manually reverted to the v0.1.2 code - the hashtags are there after all. D'oh!
+
 ### v0.1.3 2025-01-28:
 * Trying to fix the non-display of the hashtags, removed a newline from the post output and changed the quote type from '#NFL #Browns' to "#NFL #Browns".
 
