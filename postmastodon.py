@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# postmastodon.py
+# v0.0.1 for Python 3
+
 # Import the Mastodon module:
 from mastodon import Mastodon
 
