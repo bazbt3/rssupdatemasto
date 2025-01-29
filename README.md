@@ -28,8 +28,8 @@ The code itself creates 2 more files, both of which can be safely removed *while
 * I found that on a Mac one has to add cron to the list of 'Full disk access apps' - [Crontab Operation not permitted](https://apple.stackexchange.com/questions/378553/crontab-operation-not-permitted/378558#378558) (*StackExchange*).
 
 ### The 2 other scripts in the repository:
-* postmastodon.py - a short script to accept an input and post it to Mastodon.
-* rssupdatemasto_print.py - a short script to print to the screen the 'raw' text extracted from the RSS feed.
+* `postmastodon.py` - a short script to accept an input and post it to Mastodon.
+* `rssupdatemasto_print.py` - a short script to print to the screen the 'raw' text extracted from the RSS feed.
 
 ---- 
 
