@@ -8,7 +8,7 @@ Application is currently being tested on my Mac. Whilst it can run standalone it
 ### This repository structure:
 If you want to know more, the most important things to look at here are:
 * The [CHANGELOG.](CHANGELOG.md)
-* The **rssupdatemasto.py** app. The comments within the code may be more useful than the documentation.
+* The **[rssupdatemasto.py](rssupdatemasto.py)** app. The comments within the code may be more useful than the documentation.
 * This README file.
 
 ### Prerequisites:
@@ -36,8 +36,8 @@ The code itself creates 2 more files, both of which can be safely removed *while
 * I found that on a Mac one has to add cron to the list of 'Full disk access apps' - [Crontab Operation not permitted](https://apple.stackexchange.com/questions/378553/crontab-operation-not-permitted/378558#378558) (*StackExchange*).
 
 ### The 2 other scripts in the repository:
-* `postmastodon.py` - a short script to accept an input and post it to Mastodon.
-* `rssupdatemasto_print.py` - a short script to print to the screen the 'raw' text extracted from the RSS feed.
+* [postmastodon.py](postmastodon.py) - a short script to accept an input and post it to Mastodon.
+* [rssupdatemasto_print.py](rssupdatemasto_print.py) - a short script to print to the screen the 'raw' text extracted from the RSS feed.
 
 ### An example .gitignore if using a remote public repository:
 ```
