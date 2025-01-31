@@ -5,6 +5,12 @@ A Python 3 application to post notifications to Mastodon when *a single* RSS fee
 
 Application is currently being tested on my Mac. Whilst it can run standalone it's more likely to be useful when run automatically and periodically as a cron job on a server or at a dedicated web host.
 
+### This repository structure:
+If you want to know more, the most important things to look at here are:
+* The [CHANGELOG.](CHANGELOG.md)
+* The **rssupdatemasto.py** app. The comments within the code may be more useful than the documentation.
+* This README file.
+
 ### Prerequisites:
 * A Mastodon account.
 * Having the latest version of Python at least installed and available will help a lot when you're using this. The Apple system version will not run some of the modules it needs.
