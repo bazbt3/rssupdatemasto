@@ -11,9 +11,11 @@ Application is currently being tested on my Mac. Whilst it can run standalone it
 * I had to install the Mastodon module, so: `pip3 install mastodon.py`.
 * My Python also did not have the feedparser module, so: `pip3 install feedparser`.
 
-### Setup at your instance, and the configuration files you must create:
+### Setup at your instance:
 * A new 'application' must be created at your instance for your Python script - created whilst signed in. Go to `https://YourInstanceName/settings/applications/` and press the 'New application' button. Take educated guesses based on reading the help found elsewhere. You only need two Scopes checked: `write:statuses` and *(maybe!)* `profile`.
-* `masto_app_token.txt` - a file containing the Mastodon application token - only one line. **This token MUST remain secret from others**. (It is read from a separate file to give some portability to the code).
+
+### The configuration files you must create:
+* `masto_app_token.txt` - a file containing the Mastodon application token obtained from above. It must be only one line. **This token MUST remain secret from others**. (It is read from a separate file to give some portability to the code).
 * `masto_instance.txt` - a file containing the Mastodon instance address to post to - only one line.
 * `rsssource.txt` - a file containing only the RSS feed address - only one line.
 
@@ -30,6 +32,18 @@ The code itself creates 2 more files, both of which can be safely removed *while
 ### The 2 other scripts in the repository:
 * `postmastodon.py` - a short script to accept an input and post it to Mastodon.
 * `rssupdatemasto_print.py` - a short script to print to the screen the 'raw' text extracted from the RSS feed.
+
+### An example .gitignore if using a remote public repository:
+```
+# The files to ignore for this app
+# The masto_app_token.txt file must not be made public, the rest won't cause issues.
+masto_app_token.txt
+masto_instance.txt
+rsssource.txt
+rssupdatemasto_base.txt
+rssupdatemasto_new.txt
+.DS_Store
+```
 
 ---- 
 
