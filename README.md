@@ -27,7 +27,7 @@ If you want to know more, the most important things to look at here are:
 * An example:
 ```
    https://reddit.com/r/spacebrowns.rss
-   #NFL #Browns #spacebrowns #history #hope
+   #NFL #Browns #spacebrowns
 ```
 
 ### Files the script creates:
