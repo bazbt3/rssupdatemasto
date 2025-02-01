@@ -27,7 +27,7 @@ If you want to know more, the most important things to look at here are:
 * When used for hashtags, line 2 must include the \# character and no punctuation or special characters - the post displays this text exactly as entered.
 * An example:
 ```
-   https://reddit.com/r/spacebrowns.rss
+   https://reddit.com/r/spacebrowns/new/.rss
    #NFL #Browns #spacebrowns
 ```
 
