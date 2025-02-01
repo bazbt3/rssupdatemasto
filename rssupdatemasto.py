@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.1.4 for Python 3
+# v0.1.5 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -22,9 +22,11 @@ import os
 from mastodon import Mastodon
 
 # Get RSS feed source from files and then the content from the Internet:
-rssfile = open("rsssource.txt", "r")
-rsssource = rssfile.read()
-rsssource = rsssource.strip()
+# rsssource is the feed address, hashtags is the second line of the file
+with open('rsssource.txt') as rssfile:
+    lines = [line.rstrip('\n') for line in rssfile]
+rsssource = lines[0]
+hashtags = lines[1]
 feed_title = rsssource
 # The 'requests...headers=' was added because Reddit requires headers.
 d = feedparser.parse(requests.get(feed_title, headers={'User-Agent': 'Mozilla/5.0'}).content)
@@ -64,7 +66,7 @@ p_last = dateutil.parser.parse(p_last)
 p_latest = dateutil.parser.parse(p_latest)
 masto_message = ''
 if p_latest > p_last:
-	masto_message = 'My new Reddit post:\n' + p_title + '\n' + p_link + '\n' + '\n' + '#NFL #Browns'
+	masto_message = 'My new Reddit post:\n' + p_title + '\n' + p_link + '\n' + '\n' + hashtags
 	basefile_w = open('rssupdatemasto_base.txt', 'w')
 	basefile_w.write(p_publish)
 	basefile_w.close()

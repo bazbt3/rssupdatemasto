@@ -3,6 +3,10 @@
 ## Changelog
 (most recent first)
 
+### v0.1.5 2025-02-01:
+* The rsssource.txt file now has 2 lines: the feed address and the hashtags to post.
+* The code doesn't account for a file with a single line or an empty line.
+
 ### v0.1.4 2025-01-28:
 * Manually reverted to the v0.1.2 code - the hashtags are there after all. D'oh!
 

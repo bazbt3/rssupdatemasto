@@ -23,7 +23,12 @@ If you want to know more, the most important things to look at here are:
 ### The configuration files you must create:
 * `masto_app_token.txt` - a file containing the Mastodon application token obtained from above. It must be only one line. **This token MUST remain secret from others**. (It is read from a separate file to give some portability to the code).
 * `masto_instance.txt` - a file containing the Mastodon instance address to post to - only one line.
-* `rsssource.txt` - a file containing only the RSS feed address - only one line.
+* `rsssource.txt` - a 2-line file containing the RSS feed address on the first line and hashtags (or other text) to post on the second line. The 'hashtags' line must include the \# character and no punctuation or special characters - the post displays this text exactly as entered.
+* An example:
+```
+   https://reddit.com/r/spacebrowns.rss
+   #NFL #Browns #spacebrowns #history #hope
+```
 
 ### Files the script creates:
 The code itself creates 2 more files, both of which can be safely removed *while testing*, but which are necessary to create and retain a history:
