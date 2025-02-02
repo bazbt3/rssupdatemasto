@@ -37,8 +37,8 @@ The code itself creates 2 more files, both of which can be safely removed *while
 * `rssupdatemasto_base.txt` - the most recent post date, which must be retained to check if any later posts appear.
 
 ### Automating it:
-* To periodically run the script I created a 'cron job' by making a 'crontab' file on my always-on Mac. It should run every 3 hours starting at midnight. To create it I had to use the vi editor which was an experience in itself. Anyway, here it is:    
-`0 0,3,6,9,12,15,18,21 * * * cd ~/coding/rssupdatemasto/rssupdatemasto; python3 rssupdatemasto.py`
+* To periodically run the script I created a 'cron job' by making a 'crontab' file on my always-on Mac. It should run every 3 hours starting at midnight. To create and amend it I started with and continue to use the vi editor, which is an experience in itself. Anyway, here it is:    
+`0 */3 * * * cd ~/coding/rssupdatemasto/rssupdatemasto; python3 rssupdatemasto.py`
 * I found that on a Mac one has to add cron to the list of 'Full disk access apps' - [Crontab Operation not permitted](https://apple.stackexchange.com/questions/378553/crontab-operation-not-permitted/378558#378558) (*StackExchange*).
 
 ### The 2 other scripts in the repository:
