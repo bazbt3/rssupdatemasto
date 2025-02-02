@@ -43,7 +43,6 @@ The code itself creates 2 more files, both of which can be safely removed *while
 
 ### The 2 other scripts in the repository:
 * [postmastodon.py](postmastodon.py) - a short script to accept an input and post it to Mastodon.
-* [rssupdatemasto_print.py](rssupdatemasto_print.py) - a short script to print to the screen the 'raw' text extracted from the RSS feed.
 
 ### An example .gitignore if using a remote public repository:
 ```
