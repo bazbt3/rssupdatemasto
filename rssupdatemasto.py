@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.1.5 for Python 3
+# v0.1.6 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -34,6 +34,8 @@ d = feedparser.parse(requests.get(feed_title, headers={'User-Agent': 'Mozilla/5.
 p_title = d.entries[0].title
 p_link = d.entries[0].link
 p_publish = d.entries[0].published
+# Extract subreddit name
+p_term = d.entries[0].tags[0].term
 
 p_latest = p_publish
 

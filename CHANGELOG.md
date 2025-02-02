@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.1.6 2025-02-02:
+* Added `p_term = d.entries[0].tags[0].term` to extract the subreddit name - in preparation for automatically adding or excluding hashtags based on the feed's source.
+
 ### v0.1.5 2025-02-01:
 * The rsssource.txt file now has 2 lines: the feed address and the hashtags to post.
 * The code doesn't account for a file with a single line or an empty line.
