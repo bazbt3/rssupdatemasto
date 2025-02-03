@@ -4,7 +4,8 @@
 (most recent first)
 
 ### v0.2.0 2025-02-03:
-* Added a `hashtags.ini` file containing subreddit-hashtag key pairs, and the code to load it into a dictionary, checked automatically to add hashtags to posts based on the subreddit name `p_term`.
+* Added a `hashtags.ini` file containing subreddit-hashtag key pairs, and the code to load it into a dictionary, checked automatically to add hashtags to posts based on the subreddit name - the `p_term` variable.
+* Removed the now redundant second line from `rsssource.txt` - it previously held a limiting range of hashtags.
 
 ### v0.1.6 2025-02-02:
 * Added `p_term = d.entries[0].tags[0].term` to extract the subreddit name - in preparation for automatically adding or excluding hashtags based on the feed's source.
