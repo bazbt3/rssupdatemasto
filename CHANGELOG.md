@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.2.1 2025-02-03:
+* Convert `p_term` to lower case to be compatible with the configparser .ini keys.
+
 ### v0.2.0 2025-02-03:
 * Added a `hashtags.ini` file containing subreddit-hashtag key pairs, and the code to load it into a dictionary, checked automatically to add hashtags to posts based on the subreddit name - the `p_term` variable.
 * Removed the now redundant second line from `rsssource.txt` - it previously held a limiting range of hashtags.

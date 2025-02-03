@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.2.0 for Python 3
+# v0.2.1 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -36,8 +36,8 @@ d = feedparser.parse(requests.get(feed_title, headers={'User-Agent': 'Mozilla/5.
 p_title = d.entries[0].title
 p_link = d.entries[0].link
 p_publish = d.entries[0].published
-# Extract subreddit name
-p_term = d.entries[0].tags[0].term
+# Extract subreddit name and convert it to lower case to be compatible with the configparser .ini keys
+p_term = lower(d.entries[0].tags[0].term)
 
 # Load up the hashtags.ini file, then create a dictionary from it matching subreddit name with associated hashtags
 config = configparser.ConfigParser()
@@ -54,7 +54,14 @@ try:
     hashtags = tags_dict[p_term]
 except KeyError as error:
     hashtags = ""
-	
+
+# debugging
+print(tags_dict)
+print(p_term)
+print(hashtags)
+print(tags_dict[p_term])
+quit()
+
 # Store the date & time the most recent post was published
 p_latest = p_publish
 
