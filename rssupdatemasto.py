@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.1.6 for Python 3
+# v0.2.0 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -21,13 +21,15 @@ import os
 # Import Mastodon Python library for interacting with Mastodon:
 from mastodon import Mastodon
 
+# Import configparser, for .ini file
+import configparser
+
 # Get RSS feed source from files and then the content from the Internet:
-# rsssource is the feed address, hashtags is the second line of the file
-with open('rsssource.txt') as rssfile:
-    lines = [line.rstrip('\n') for line in rssfile]
-rsssource = lines[0]
-hashtags = lines[1]
+rssfile = open("rsssource.txt", "r")
+rsssource = rssfile.read()
+rsssource = rsssource.strip()
 feed_title = rsssource
+
 # The 'requests...headers=' was added because Reddit requires headers.
 d = feedparser.parse(requests.get(feed_title, headers={'User-Agent': 'Mozilla/5.0'}).content)
 # Extract the most recent feed post's title, link & published date:
@@ -37,6 +39,23 @@ p_publish = d.entries[0].published
 # Extract subreddit name
 p_term = d.entries[0].tags[0].term
 
+# Load up the hashtags.ini file, then create a dictionary from it matching subreddit name with associated hashtags
+config = configparser.ConfigParser()
+config.read('hashtags.ini')
+# Read the section and matched pairs
+tags_dict = {}
+for section in config.sections():
+    tags_dict[section] = {}
+    for option in config.options(section):
+        tags_dict[section][option] = config.get(section, option)
+# Check the subreddit is one of those in the file, otherwise trap the resulting error of a missing key
+try:
+    tags_dict[p_term]
+    hashtags = tags_dict[p_term]
+except KeyError as error:
+    hashtags = ""
+	
+# Store the date & time the most recent post was published
 p_latest = p_publish
 
 # Create a list of title, link & published date:

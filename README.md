@@ -21,14 +21,24 @@ If you want to know more, the most important things to look at here are:
 * A new 'application' must be created at your instance for your Python script - created whilst signed in. Go to `https://YourInstanceName/settings/applications/` and press the 'New application' button. Take educated guesses based on reading the help found elsewhere. You only need two Scopes checked: `write:statuses` and *(maybe!)* `profile`.
 
 ### The configuration files you must create:
-* `masto_app_token.txt` - a file containing the Mastodon application token obtained from above. It must be only one line. **This token MUST remain secret from others**. (It is read from a separate file to give some portability to the code).
-* `masto_instance.txt` - a file containing the Mastodon instance address to post to - only one line.
-* `rsssource.txt` - a 2-line file containing the RSS feed address on the first line and hashtags (or other text) to post on the second line.
-* When used for hashtags, line 2 must include the \# character and no punctuation or special characters - the post displays this text exactly as entered.
-* An example:
+* **`masto_app_token.txt`** - a file containing the Mastodon application token obtained from above. It must be only one line. **This token MUST remain secret from others**. (It is read from a separate file to give some portability to the code). An example of how it might look:
 ```
-   https://reddit.com/r/spacebrowns/new/.rss
-   #NFL #Browns #spacebrowns
+y0UWilllik3pLay1ngW1ththiSApporIt6Iv3sjOyus
+```
+* **`masto_instance.txt`** - a file containing the Mastodon instance address to post to - only one line. An example:
+```
+https://mastodon.social/
+```
+* **`rsssource.txt`** - a file containing only the RSS feed address on one line. An example:
+```
+https://reddit.com/user/{username}/submitted/.rss
+```
+* **`hashtags.ini`** - an .ini file containing key-value pairs of subreddit name and hashtags to post. It is important that the exact letter case from the subreddit name is used. An example:
+```
+[Subreddit_hashtag_pairs]
+Browns = '#NFL #Browns'
+FuckModell = '#NFL #Browns #history'
+spacebrowns = '#NFL #Browns #spacebrowns'
 ```
 
 ### Files the script creates:
