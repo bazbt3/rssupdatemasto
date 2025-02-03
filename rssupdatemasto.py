@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.2.1 for Python 3
+# v0.2.2 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -37,30 +37,21 @@ p_title = d.entries[0].title
 p_link = d.entries[0].link
 p_publish = d.entries[0].published
 # Extract subreddit name and convert it to lower case to be compatible with the configparser .ini keys
-p_term = lower(d.entries[0].tags[0].term)
+p_term = d.entries[0].tags[0].term
 
-# Load up the hashtags.ini file, then create a dictionary from it matching subreddit name with associated hashtags
-config = configparser.ConfigParser()
-config.read('hashtags.ini')
-# Read the section and matched pairs
-tags_dict = {}
-for section in config.sections():
-    tags_dict[section] = {}
-    for option in config.options(section):
-        tags_dict[section][option] = config.get(section, option)
+# Read the hashtags from the hashtags.ini file 
+with open('hashtags.ini') as h: 
+    tags_str = h.read()
+# Convert the string to a JSON dict
+tags_dict = json.loads(tags_str)
+
+
 # Check the subreddit is one of those in the file, otherwise trap the resulting error of a missing key
 try:
     tags_dict[p_term]
     hashtags = tags_dict[p_term]
 except KeyError as error:
     hashtags = ""
-
-# debugging
-print(tags_dict)
-print(p_term)
-print(hashtags)
-print(tags_dict[p_term])
-quit()
 
 # Store the date & time the most recent post was published
 p_latest = p_publish

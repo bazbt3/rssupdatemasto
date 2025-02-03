@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.2.2 2025-02-03:
+* Converted `hashtags.ini` from a configparser .ini file to a Python .dict. The automatic conversion of configparser .ini file key names was too big a problem for me to want to solve.
+
 ### v0.2.1 2025-02-03:
 * Convert `p_term` to lower case to be compatible with the configparser .ini keys.
 

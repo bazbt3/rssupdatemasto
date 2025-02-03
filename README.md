@@ -33,12 +33,11 @@ https://mastodon.social/
 ```
 https://reddit.com/user/{username}/submitted/.rss
 ```
-* **`hashtags.ini`** - an .ini file containing key-value pairs of subreddit name and hashtags to post. It is important that the exact letter case from the subreddit name is used. An example:
+* **`hashtags.ini`** - an .ini file actually containing a Python dictionary of subreddit name and hashtags to post. It is important to use double quotes and the exact letter case from the subreddit name is used. An example:
 ```
-[Subreddit_hashtag_pairs]
-Browns = '#NFL #Browns'
-FuckModell = '#NFL #Browns #history'
-spacebrowns = '#NFL #Browns #spacebrowns'
+{"Browns": "#NFL #Browns",
+ "spacebrowns": "#NFL #Browns",
+ "FuckModell": "#NFL #Browns #History"}
 ```
 
 ### Files the script creates:
