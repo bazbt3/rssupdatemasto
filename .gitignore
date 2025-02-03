@@ -3,6 +3,7 @@
 masto_app_token.txt
 masto_instance.txt
 rsssource.txt
+hashtags.ini
 rssupdatemasto_base.txt
 rssupdatemasto_new.txt
 .DS_Store
