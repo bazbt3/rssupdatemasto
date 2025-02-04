@@ -33,7 +33,7 @@ If you want to know more, the most important things to look at here are:
 ```
    https://reddit.com/user/{username}/submitted/.rss
 ```
-* **`hashtags.ini`** - an .ini file actually containing a Python dictionary of subreddit name and hashtags to post. It is important to use double quotes and the exact letter case from the subreddit name is used. An example:
+* **`hashtags.ini`** - an .ini file actually containing a Python dictionary of subreddit name and hashtags to post. It is important to use double quotes and the exact letter case from the subreddit name. An example:
 ```
    {"Browns": "#NFL #Browns",
     "spacebrowns": "#NFL #Browns",
