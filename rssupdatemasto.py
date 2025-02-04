@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.2.2 for Python 3
+# v0.2.3 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -36,7 +36,7 @@ d = feedparser.parse(requests.get(feed_title, headers={'User-Agent': 'Mozilla/5.
 p_title = d.entries[0].title
 p_link = d.entries[0].link
 p_publish = d.entries[0].published
-# Extract subreddit name and convert it to lower case to be compatible with the configparser .ini keys
+# Extract subreddit name and convert it to lower case to be compatible with the configparser .ini keys:
 p_term = d.entries[0].tags[0].term
 
 # Read the hashtags from the hashtags.ini file 
@@ -46,14 +46,15 @@ with open('hashtags.ini') as h:
 tags_dict = json.loads(tags_str)
 
 
-# Check the subreddit is one of those in the file, otherwise trap the resulting error of a missing key
+# Check the subreddit is one of those in the file, otherwise trap the resulting error of a missing key:
+# Format a successful match with 2 newlines to separate the tags from the taxt & address:
 try:
     tags_dict[p_term]
-    hashtags = tags_dict[p_term]
+    hashtags = "\n\n" + tags_dict[p_term]
 except KeyError as error:
     hashtags = ""
 
-# Store the date & time the most recent post was published
+# Store the date & time the most recent post was published:
 p_latest = p_publish
 
 # Create a list of title, link & published date:
@@ -67,7 +68,7 @@ with open('rssupdatemasto_new.txt', 'w') as newfile:
 	json.dump(p_list, newfile)
 
 # Does an 'rssupdatemasto_base.txt' file already exist, i.e. has this program run before?
-# If not, create the file with its only contents as the most recent post date;
+# If not, create the file with its only contents as the most recent post date:
 if not os.path.exists('rssupdatemasto_base.txt'):
 	basefile_w = open('rssupdatemasto_base.txt', 'w')
 	basefile_w.write(p_publish)
@@ -85,7 +86,7 @@ p_last = dateutil.parser.parse(p_last)
 p_latest = dateutil.parser.parse(p_latest)
 masto_message = ''
 if p_latest > p_last:
-	masto_message = 'My new Reddit post:\n' + p_title + '\n' + p_link + '\n' + '\n' + hashtags
+	masto_message = 'My new Reddit post:\n' + p_title + '\n' + p_link + hashtags
 	basefile_w = open('rssupdatemasto_base.txt', 'w')
 	basefile_w.write(p_publish)
 	basefile_w.close()
