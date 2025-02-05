@@ -3,8 +3,11 @@
 ## Changelog
 (most recent first)
 
+### v0.2.4 2025-02-05:
+* Renamed `hashtags.ini` to `hashtags.txt`.
+
 ### v0.2.3 2025-02-04:
-* Moved the formatting of the break between the hashtags and text & URL to the hashtag variable definition.
+* Moved the formatting of the break between the hashtags and the text & URL into the hashtag variable definition.
 
 ### v0.2.2 2025-02-03:
 * Converted `hashtags.ini` from a configparser .ini file to a Python .dict. The automatic conversion of configparser .ini file key names was too big a problem for me to want to solve.

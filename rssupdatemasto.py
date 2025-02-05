@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.2.3 for Python 3
+# v0.2.4 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -40,7 +40,7 @@ p_publish = d.entries[0].published
 p_term = d.entries[0].tags[0].term
 
 # Read the hashtags from the hashtags.ini file 
-with open('hashtags.ini') as h: 
+with open('hashtags.txt') as h: 
     tags_str = h.read()
 # Convert the string to a JSON dict
 tags_dict = json.loads(tags_str)
