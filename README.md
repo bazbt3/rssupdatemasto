@@ -40,6 +40,7 @@ For posts in r/Browns, `term="Browns" label="r/Browns"`, so use `"Browns"`.
     "FuckModell": "#NFL #Browns #History",
     "spacebrowns": "#NFL #Browns"}
 ```
+Note: I chose to use this method of displaying the data within the file. Don't use an `.ini` with `configparser` - configparser converts the key's text to lower case, thus never matching the `term` value.
 
 ### Files the script creates:
 The code itself creates 2 more files, both of which can be safely removed *while testing*, but which are necessary to create and retain a history:
