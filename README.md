@@ -33,7 +33,8 @@ If you want to know more, the most important things to look at here are:
 ```
    https://reddit.com/user/{username}/submitted/.rss
 ```
-* **`hashtags.txt`** - a file containing a Python dictionary of subreddit name and hashtags to post. It is important to use double quotes and the exact letter case from the subreddit name. An example:
+* **`hashtags.txt`** - a file containing a Python dictionary of subreddit name and hashtags to post. It is important to use double quotes and the exact letter case from the subreddit name. Within the raw RSS data returned from Reddit are data `term="subreddit" label="r/subreddit"`. Use the `term` value as the key in the file you create. An example:    
+For posts in r/Browns, `term="Browns" label="r/Browns"`, so use `"Browns"`.
 ```
    {"Browns": "#NFL #Browns",
     "FuckModell": "#NFL #Browns #History",
