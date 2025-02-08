@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.2.4 for Python 3
+# v0.2.5 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
 
-# Import requests module
+# Import requests module:
 import requests
 
 # Import date parser, parse:
@@ -21,7 +21,7 @@ import os
 # Import Mastodon Python library for interacting with Mastodon:
 from mastodon import Mastodon
 
-# Import configparser, for .ini file
+# Import configparser, for .ini file:
 import configparser
 
 # Get RSS feed source from files and then the content from the Internet:
@@ -30,19 +30,21 @@ rsssource = rssfile.read()
 rsssource = rsssource.strip()
 feed_title = rsssource
 
-# The 'requests...headers=' was added because Reddit requires headers.
+# The 'requests...headers=' was added because Reddit requires headers:
 d = feedparser.parse(requests.get(feed_title, headers={'User-Agent': 'Mozilla/5.0'}).content)
-# Extract the most recent feed post's title, link & published date:
+# Extract the feed title and the most recent post's title, link & published date:
+p_feed = d.feed.title
 p_title = d.entries[0].title
 p_link = d.entries[0].link
 p_publish = d.entries[0].published
-# Extract subreddit name and convert it to lower case to be compatible with the configparser .ini keys:
+
+# For Reddit extract the subreddit name:
 p_term = d.entries[0].tags[0].term
 
-# Read the hashtags from the hashtags.ini file 
+# Read the hashtags from the hashtags.ini file:
 with open('hashtags.txt') as h: 
     tags_str = h.read()
-# Convert the string to a JSON dict
+# Convert the string to a JSON dict:
 tags_dict = json.loads(tags_str)
 
 

@@ -3,6 +3,10 @@
 ## Changelog
 (most recent first)
 
+### v0.2.5 2025-02-08:
+* Added the feed title `p_feed = d.feed.title` in preparation for future expansion.
+* Small code comment updates.
+
 ### v0.2.4 2025-02-05:
 * Renamed `hashtags.ini` to `hashtags.txt`.
 
