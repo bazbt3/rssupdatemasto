@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.2.6 for Python 3
+# v0.2.7 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -21,9 +21,6 @@ import os
 # Import Mastodon Python library for interacting with Mastodon:
 from mastodon import Mastodon
 
-# Import configparser, for .ini file:
-import configparser
-
 # Get RSS feed source from files and then the content from the Internet:
 rssfile = open("rsssource.txt", "r")
 rsssource = rssfile.read()
@@ -38,10 +35,12 @@ p_link = d.entries[0].link
 p_publish = d.entries[0].published
 
 # For Reddit extract the feed title and subreddit name:
+# Feed title:
 try:
     p_feed = d.feed.title
 except AttributeError as error:
     p_feed = ""
+# Subreddit name:
 p_term = d.entries[0].tags[0].term
 
 # Read the hashtags from the hashtags.ini file:
@@ -49,7 +48,6 @@ with open('hashtags.txt') as h:
     tags_str = h.read()
 # Convert the string to a JSON dict:
 tags_dict = json.loads(tags_str)
-
 
 # Check the subreddit is one of those in the file, otherwise trap the resulting error of a missing key:
 # Format a successful match with 2 newlines to separate the tags from the taxt & address:

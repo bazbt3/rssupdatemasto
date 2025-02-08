@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.2.7 2025-02-08:
+* Removed `import configparser` as redundant.
+
 ### v0.2.6 2025-02-08:
 * Trapped an exception when finding the title of a non-Reddit feed.
 * Needs work to find the variable used - checking if there is a standard.
