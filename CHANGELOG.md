@@ -3,6 +3,10 @@
 ## Changelog
 (most recent first)
 
+### v0.2.6 2025-02-08:
+* Trapped an exception when finding the title of a non-Reddit feed.
+* Needs work to find the variable used - checking if there is a standard.
+
 ### v0.2.5 2025-02-08:
 * Added the feed title `p_feed = d.feed.title` in preparation for future expansion.
 * Small code comment updates.

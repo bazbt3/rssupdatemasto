@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.2.5 for Python 3
+# v0.2.6 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -32,13 +32,16 @@ feed_title = rsssource
 
 # The 'requests...headers=' was added because Reddit requires headers:
 d = feedparser.parse(requests.get(feed_title, headers={'User-Agent': 'Mozilla/5.0'}).content)
-# Extract the feed title and the most recent post's title, link & published date:
-p_feed = d.feed.title
+# Extract the most recent post's title, link & published date:
 p_title = d.entries[0].title
 p_link = d.entries[0].link
 p_publish = d.entries[0].published
 
-# For Reddit extract the subreddit name:
+# For Reddit extract the feed title and subreddit name:
+try:
+    p_feed = d.feed.title
+except AttributeError as error:
+    p_feed = ""
 p_term = d.entries[0].tags[0].term
 
 # Read the hashtags from the hashtags.ini file:
