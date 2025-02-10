@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.2.7 for Python 3
+# v0.2.8 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -20,6 +20,16 @@ import os
 
 # Import Mastodon Python library for interacting with Mastodon:
 from mastodon import Mastodon
+
+# Setup Mastodon authorisation:
+tokenfile = open("masto_app_token.txt", "r")
+token = tokenfile.read()
+token = token.strip()
+instancefile = open("masto_instance.txt", "r")
+instance = instancefile.read()
+instance = instance.strip()
+# Create an instance of the Mastodon class:
+mastodon = Mastodon(access_token = token, api_base_url = instance)
 
 # Get RSS feed source from files and then the content from the Internet:
 rssfile = open("rsssource.txt", "r")
@@ -96,14 +106,5 @@ if p_latest > p_last:
 
 # If a new feed post exists:
 if masto_message != '':
-	# Setup Mastodon authorisation:
-	tokenfile = open("masto_app_token.txt", "r")
-	token = tokenfile.read()
-	token = token.strip()
-	instancefile = open("masto_instance.txt", "r")
-	instance = instancefile.read()
-	instance = instance.strip()
-	# Create an instance of the Mastodon class:
-	mastodon = Mastodon(access_token = token, api_base_url = instance)
 	# Create a public post using the text from masto_message:
 	mastodon.status_post(masto_message)

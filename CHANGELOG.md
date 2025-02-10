@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.2.8 2025-02-010:
+* Moved the Mastodon authorisation code from the post creation section at the end.
+
 ### v0.2.7 2025-02-08:
 * Removed `import configparser` as redundant.
 
