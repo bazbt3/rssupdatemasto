@@ -5,11 +5,8 @@ A Python 3 application to post to Mastodon when *a single* RSS feed is updated.
 
 The application is currently being tested on my Mac. Whilst it can run standalone it's more likely to be useful when run automatically and periodically as a cron job on a server or at a dedicated web host.
 
-### This repository structure:
-If you want to know more, the most important things to look at here are:
-* The [CHANGELOG.](CHANGELOG.md)
-* The **[rssupdatemasto.py](rssupdatemasto.py)** app. The comments within the code may be more useful than the documentation.
-* This README file.
+# Calling it from the command line:
+`python3 rssupdatemasto.py`. This currently has no arguments passed when it's called.
 
 ### Prerequisites:
 * A Mastodon account.
@@ -80,3 +77,10 @@ Each time I ran the code the following warning appeared:
 I did some digging and it appears that it's a known issue - urllib3 does not play nicely with the Python supplied by Apple - a GitHub issue here: [urllib3>=2.0 does not work with system Python on macOS](https://github.com/urllib3/urllib3/issues/3020) (*GitHub*).
 
 Well, I successfully installed Python 3.13.1 from here and the error goes away: https://www.python.org/downloads/
+
+---- 
+
+### More:
+If you want to know more, look at the following:
+* The [CHANGELOG.](CHANGELOG.md)
+* The **[rssupdatemasto.py](rssupdatemasto.py)** script itself. The comments within the code may be more useful than the documentation.
