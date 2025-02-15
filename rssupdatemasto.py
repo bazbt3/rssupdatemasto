@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.2.8 for Python 3
+# v0.3.0 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -32,79 +32,92 @@ instance = instance.strip()
 mastodon = Mastodon(access_token = token, api_base_url = instance)
 
 # Get RSS feed source from files and then the content from the Internet:
-rssfile = open("rsssource.txt", "r")
-rsssource = rssfile.read()
-rsssource = rsssource.strip()
-feed_title = rsssource
 
-# The 'requests...headers=' was added because Reddit requires headers:
-d = feedparser.parse(requests.get(feed_title, headers={'User-Agent': 'Mozilla/5.0'}).content)
-# Extract the most recent post's title, link & published date:
-p_title = d.entries[0].title
-p_link = d.entries[0].link
-p_publish = d.entries[0].published
+# Original code for single-line 'rsssource.txt' file:
+# Everythig past this line was not indented:
+# rssfile = open("rsssource.txt", "r")
+# rsssource = rssfile.read()
+# rsssource = rsssource.strip()
+# feed_title = rsssource
 
-# For Reddit extract the feed title and subreddit name:
-# Feed title:
-try:
-    p_feed = d.feed.title
-except AttributeError as error:
-    p_feed = ""
-# Subreddit name:
-p_term = d.entries[0].tags[0].term
+# New code for multiple-line 'rsssource.txt' file:
+with open('rsssource.txt') as sources:
+    for line in sources:
+        feed_title = line.strip('[]').strip()
 
-# Read the hashtags from the 'hashtags.txt' file:
-with open('hashtags.txt') as h: 
-    tags_str = h.read()
-# Convert the string to a JSON dict:
-tags_dict = json.loads(tags_str)
+        # De-dent past this line if the code above fails:
+		# VS Code on Mac Dedent = CMD-[
+		# VS Code on Mac Indent = CMD-]
 
-# Check the subreddit is one of those in the file, otherwise trap the resulting error of a missing key:
-# Format a successful match with 2 newlines to separate the tags from the taxt & address:
-try:
-    tags_dict[p_term]
-    hashtags = "\n\n" + tags_dict[p_term]
-except KeyError as error:
-    hashtags = ""
+		# The 'requests...headers=' was added because Reddit requires headers:
+        d = feedparser.parse(requests.get(feed_title, headers={'User-Agent': 'Mozilla/5.0'}).content)
+        # Extract the most recent post's title, link & published date:
+        p_title = d.entries[0].title
+        p_link = d.entries[0].link
+        p_publish = d.entries[0].published
 
-# Store the date & time the most recent post was published:
-p_latest = p_publish
+        # For Reddit extract the feed title and subreddit name:
+        # Feed title:
+        try:
+            p_feed = d.feed.title
+        except AttributeError as error:
+           p_feed = ""
+        # Subreddit name:
+        p_term = d.entries[0].tags[0].term
 
-# Create a list of title, link & published date:
-p_list = []
-p_list.append(p_title)
-p_list.append(p_link)
-p_list.append(p_publish)
+        # Read the hashtags from the 'hashtags.txt' file:
+        with open('hashtags.txt') as h: 
+            tags_str = h.read()
+        # Convert the string to a JSON dict:
+        tags_dict = json.loads(tags_str)
 
-# Save the latest post to a file, as JSON:
-with open('rssupdatemasto_new.txt', 'w') as newfile:  
-	json.dump(p_list, newfile)
+        # Check the subreddit is one of those in the file, otherwise trap the resulting error of a missing key:
+        # Format a successful match with 2 newlines to separate the tags from the taxt & address:
+        try:
+            tags_dict[p_term]
+            hashtags = "\n\n" + tags_dict[p_term]
+        except KeyError as error:
+            hashtags = ""
 
-# Does an 'rssupdatemasto_base.txt' file already exist, i.e. has this program run before?
-# If it does not, create the file with its only contents as the most recent post date:
-if not os.path.exists('rssupdatemasto_base.txt'):
-	basefile_w = open('rssupdatemasto_base.txt', 'w')
-	basefile_w.write(p_publish)
-	basefile_w.close()
-	p_last = p_publish
+        # Store the date & time the most recent post was published:
+        p_latest = p_publish
 
-# If 'rssupdatemasto_base.txt' does exist, read its contents:
-if os.path.exists('rssupdatemasto_base.txt'):
-	basefile_r = open('rssupdatemasto_base.txt', 'r') 
-	p_last = basefile_r.read()
-	basefile_r.close()
+        # Create a list of title, link & published date:
+        p_list = []
+        p_list.append(p_title)
+        p_list.append(p_link)
+        p_list.append(p_publish)
 
-# Compare the post dates. If new > base, compile message & save latest over base:
-p_last = dateutil.parser.parse(p_last)
-p_latest = dateutil.parser.parse(p_latest)
-masto_message = ''
-if p_latest > p_last:
-	masto_message = 'My new Reddit post:\n' + p_title + '\n' + p_link + hashtags
-	basefile_w = open('rssupdatemasto_base.txt', 'w')
-	basefile_w.write(p_publish)
-	basefile_w.close()
+        # Save the latest post to a file, as JSON:
+        # Commented out this section as probably redundant:
+        # with open('rssupdatemasto_new.txt', 'w') as newfile:  
+        #	json.dump(p_list, newfile)
 
-# If a new feed post exists:
-if masto_message != '':
-	# Create a public post using the text from masto_message:
-	mastodon.status_post(masto_message)
+        # Does an 'rssupdatemasto_base.txt' file already exist, i.e. has this program run before?
+        # If it does not, create the file with its only contents as the most recent post date:
+        if not os.path.exists('rssupdatemasto_base.txt'):
+            basefile_w = open('rssupdatemasto_base.txt', 'w')
+            basefile_w.write(p_publish)
+            basefile_w.close()
+            p_last = p_publish
+
+        # If 'rssupdatemasto_base.txt' does exist, read its contents:
+        if os.path.exists('rssupdatemasto_base.txt'):
+            basefile_r = open('rssupdatemasto_base.txt', 'r') 
+            p_last = basefile_r.read()
+            basefile_r.close()
+
+        # Compare the post dates. If new > base, compile message & save latest over base:
+        p_last = dateutil.parser.parse(p_last)
+        p_latest = dateutil.parser.parse(p_latest)
+        masto_message = ''
+        if p_latest > p_last:
+            masto_message = 'My new post:\n' + p_title + '\n' + p_link + hashtags
+            basefile_w = open('rssupdatemasto_base.txt', 'w')
+            basefile_w.write(p_publish)
+            basefile_w.close()
+
+        # If a new feed post exists:
+        if masto_message != '':
+            # Create a public post using the text from masto_message:
+            mastodon.status_post(masto_message)

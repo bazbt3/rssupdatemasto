@@ -26,9 +26,10 @@ The application is currently being tested on my Mac. Whilst it can run standalon
 ```
    https://mastodon.social/
 ```
-* **`rsssource.txt`** - a file containing only the RSS feed address on one line. An example:
+* **`rsssource.txt`** - a file containing one or more RSS feed, each with their address on a new line - an improvement on the single feed in the script prior to v0.3.0. An example:
 ```
    https://reddit.com/user/{username}/submitted/.rss
+   https://{url.tld}/feed
 ```
 * **`hashtags.txt`** - a file containing a Python dictionary of subreddit name and hashtags to post. It is important to use double quotes and the exact letter case from the subreddit name. Within the raw RSS data returned from Reddit are data `term="subreddit" label="r/subreddit"`. Use the `term` value as the key in the file you create. An example:    
 For posts in r/Browns, `term="Browns" label="r/Browns"`, so use `"Browns"`.
@@ -40,13 +41,12 @@ For posts in r/Browns, `term="Browns" label="r/Browns"`, so use `"Browns"`.
 Note: I *chose* to use this method of displaying the data within the `hashtags` file. Using an `.ini` with `configparser` one must make the values lower case throughout - configparser converts the key's text to lower case, thus never matching the `term` value.
 
 ### Files the script creates:
-The code itself creates 2 more files, both of which can be safely removed *while testing*, but which are necessary to create and retain a history:
-* `rssupdatemasto_new.txt` - the title, URL and posting date of the latest RSS post.
+The code itself creates one file, which can be safely removed *while testing*, but which is necessary to create and retain a history:
 * `rssupdatemasto_base.txt` - the most recent post date, which must be retained to check if any later posts appear.
 
 ### Automating it:
-* To periodically run the script I created a 'cron job' by making a 'crontab' file on my always-on Mac. It should run every 3 hours starting at midnight. To create and amend it I started with and continue to use the vi editor, which is an experience in itself. Anyway, here it is:    
-`0 */3 * * * cd ~/coding/rssupdatemasto/rssupdatemasto; python3 rssupdatemasto.py`
+* To periodically run the script I created a 'cron job' by making a 'crontab' file on my always-on Mac. It runs every hour starting at midnight. To create and amend it I started with and continue to use the vi editor, which is an experience in itself. Anyway, here it is:    
+`0 * * * * cd ~/coding/rssupdatemasto/rssupdatemasto; python3 rssupdatemasto.py`
 * I found that on a Mac one has to add cron to the list of 'Full disk access apps' - [Crontab Operation not permitted](https://apple.stackexchange.com/questions/378553/crontab-operation-not-permitted/378558#378558) (*StackExchange*).
 
 ### The other script in the repository:

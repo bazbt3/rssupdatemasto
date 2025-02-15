@@ -3,7 +3,13 @@
 ## Changelog
 (most recent first)
 
-### v0.2.9 2025-02-015:
+### v0.3.0 2025-02-15:
+* Added the ability to check more than the original single RSS source - the `rsssource.txt` file can now have multiple lines.
+* The previous code is currently commented out.
+* The `rssupdatemasto_new` file is now redundant.
+* Note: though it works, the code may not correctly check all sources due to the `rssupdatemasto_new` test working only on the most recent post found. It might be better to move writing the date to file outside the main loop - one everything is processed.
+
+### v0.2.9 2025-02-15:
 * Tidied comments and some code; no functional changes.
 
 ### v0.2.8 2025-02-010:
