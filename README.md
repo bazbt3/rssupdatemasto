@@ -1,12 +1,12 @@
 <img src="rssupdatemasto_logo.jpg" height="96" alt="rssupdatemasto RSS feed updates post to Mastodon."> <br>
 
 # What is 'rssupdatemasto'?
-A Python 3 application to post to Mastodon when *a single* RSS feed is updated.
+A Python 3 application to post to Mastodon when nominated RSS feeds are updated.
 
 The application is currently being tested on my Mac. Whilst it can run standalone it's more likely to be useful when run automatically and periodically as a cron job on a server or at a dedicated web host.
 
 # Calling it from the command line:
-`python3 rssupdatemasto.py`. This currently has no arguments passed when it's called.
+`python3 rssupdatemasto.py`.
 
 ### Prerequisites:
 * A Mastodon account.
