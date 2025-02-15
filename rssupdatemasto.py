@@ -53,7 +53,7 @@ except AttributeError as error:
 # Subreddit name:
 p_term = d.entries[0].tags[0].term
 
-# Read the hashtags from the hashtags.ini file:
+# Read the hashtags from the 'hashtags.txt' file:
 with open('hashtags.txt') as h: 
     tags_str = h.read()
 # Convert the string to a JSON dict:
@@ -81,20 +81,20 @@ with open('rssupdatemasto_new.txt', 'w') as newfile:
 	json.dump(p_list, newfile)
 
 # Does an 'rssupdatemasto_base.txt' file already exist, i.e. has this program run before?
-# If not, create the file with its only contents as the most recent post date:
+# If it does not, create the file with its only contents as the most recent post date:
 if not os.path.exists('rssupdatemasto_base.txt'):
 	basefile_w = open('rssupdatemasto_base.txt', 'w')
 	basefile_w.write(p_publish)
 	basefile_w.close()
 	p_last = p_publish
 
-# If yes, read its contents: 	
+# If 'rssupdatemasto_base.txt' does exist, read its contents:
 if os.path.exists('rssupdatemasto_base.txt'):
 	basefile_r = open('rssupdatemasto_base.txt', 'r') 
 	p_last = basefile_r.read()
 	basefile_r.close()
 
-# Compare the post dates, if new > base, compile message & save latest over base:
+# Compare the post dates. If new > base, compile message & save latest over base:
 p_last = dateutil.parser.parse(p_last)
 p_latest = dateutil.parser.parse(p_latest)
 masto_message = ''
