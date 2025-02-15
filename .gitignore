@@ -5,7 +5,6 @@ masto_instance.txt
 rsssource.txt
 hashtags.txt
 rssupdatemasto_base.txt
-rssupdatemasto_new.txt
 .DS_Store
 
 # The default Python .gitignore starts below
