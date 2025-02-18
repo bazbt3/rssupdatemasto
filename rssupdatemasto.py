@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.3.0 for Python 3
+# v0.3.1 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -74,8 +74,15 @@ with open('rsssource.txt') as sources:
         # Check the subreddit is one of those in the file, otherwise trap the resulting error of a missing key:
         # Format a successful match with 2 newlines to separate the tags from the taxt & address:
         try:
-            tags_dict[p_term]
-            hashtags = "\n\n" + tags_dict[p_term]
+            # Try Reddit first:
+            try:
+                tags_dict[p_term]
+                hashtags = "\n\n" + tags_dict[p_term]
+            # Then try a different format (tested with my blog):
+            except:
+                tags_dict[p_feed]
+                hashtags = "\n\n" + tags_dict[p_feed]
+        # And if tg previous 2 fail, trap the error and do not add hashtags:
         except KeyError as error:
             hashtags = ""
 

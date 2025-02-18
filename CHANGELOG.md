@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.3.1 2025-02-18:
+* Fixed: now adds hashtags to sources other than Reddit. (Tested only with my blog feed).
+
 ### v0.3.0 2025-02-15:
 * Added the ability to check more than the original single RSS source - the `rsssource.txt` file can now have multiple lines.
 * The previous code is currently commented out.
