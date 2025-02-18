@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.3.1 for Python 3
+# v0.3.2 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -33,21 +33,10 @@ mastodon = Mastodon(access_token = token, api_base_url = instance)
 
 # Get RSS feed source from files and then the content from the Internet:
 
-# Original code for single-line 'rsssource.txt' file:
-# Everythig past this line was not indented:
-# rssfile = open("rsssource.txt", "r")
-# rsssource = rssfile.read()
-# rsssource = rsssource.strip()
-# feed_title = rsssource
-
-# New code for multiple-line 'rsssource.txt' file:
+# Sequentially read a multiple-line 'rsssource.txt' file - the list of feed sources - and process whatever is found according to the RSS parameter names per feed title and per post:
 with open('rsssource.txt') as sources:
     for line in sources:
         feed_title = line.strip('[]').strip()
-
-        # De-dent past this line if the code above fails:
-		# VS Code on Mac Dedent = CMD-[
-		# VS Code on Mac Indent = CMD-]
 
 		# The 'requests...headers=' was added because Reddit requires headers:
         d = feedparser.parse(requests.get(feed_title, headers={'User-Agent': 'Mozilla/5.0'}).content)

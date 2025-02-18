@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.3.2 2025-02-18:
+* Remove the commented-out now-redundant code related to the single feed source.
+
 ### v0.3.1 2025-02-18:
 * Fixed: now adds hashtags to sources other than Reddit. (Tested only with my blog feed).
 
