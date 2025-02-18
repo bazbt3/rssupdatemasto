@@ -5,7 +5,7 @@ A Python 3 application to post to Mastodon when nominated RSS feeds are updated.
 
 The application is currently being tested on my Mac. Whilst it can run standalone it's more likely to be useful when run automatically and periodically as a cron job on a server or at a dedicated web host.
 
-# Calling it from the command line:
+### Calling it from the command line:
 `python3 rssupdatemasto.py`.
 
 ### Prerequisites:
@@ -20,7 +20,7 @@ The application is currently being tested on my Mac. Whilst it can run standalon
 ### The configuration files you must create:
 * **`masto_app_token.txt`** - a file containing the Mastodon application token obtained from above. It must be only one line. **This token MUST remain secret from others**. (It is read from a separate file to give some portability to the code). An example of how it might look:
 ```
-   y0UWilllik3pLay1ngW1ththiSApporIt6Iv3sjOyus
+   y0UWilllik3pLay1ngW1ththiSAppForIt8r1n6sjOy
 ```
 * **`masto_instance.txt`** - a file containing the Mastodon instance address to post to - only one line. An example:
 ```
@@ -38,21 +38,13 @@ For posts in r/Browns, `term="Browns" label="r/Browns"`, so use `"Browns"`.
     "FuckModell": "#NFL #Browns #History",
     "spacebrowns": "#NFL #Browns"}
 ```
-Note: I *chose* to use this method of displaying the data within the `hashtags` file. Using an `.ini` with `configparser` one must make the values lower case throughout - configparser converts the key's text to lower case, thus never matching the `term` value.
+Note: I *chose* to use this method of displaying the data within the `hashtags` file. (Using an `.ini` with `configparser` one must make the values lower case throughout - configparser converts the key's text to lower case, thus never matching the `term` value).
 
 ### Files the script creates:
 The code itself creates one file, which can be safely removed *while testing*, but which is necessary to create and retain a history:
 * `rssupdatemasto_base.txt` - the most recent post date, which must be retained to check if any later posts appear.
 
-### Automating it:
-* To periodically run the script I created a 'cron job' by making a 'crontab' file on my always-on Mac. It runs every hour starting at midnight. To create and amend it I started with and continue to use the vi editor, which is an experience in itself. Anyway, here it is:    
-`0 * * * * cd ~/coding/rssupdatemasto/rssupdatemasto; python3 rssupdatemasto.py`
-* I found that on a Mac one has to add cron to the list of 'Full disk access apps' - [Crontab Operation not permitted](https://apple.stackexchange.com/questions/378553/crontab-operation-not-permitted/378558#378558) (*StackExchange*).
-
-### The other script in the repository:
-* [postmastodon.py](postmastodon.py) - a short script to accept an input and post it to Mastodon.
-
-### An example .gitignore if using a remote public repository:
+### An example .gitignore file if saving this into a remote public repository:
 ```
 # The files to ignore for this app
 # The masto_app_token.txt file must not be made public, the rest won't cause issues.
@@ -63,6 +55,19 @@ rssupdatemasto_base.txt
 rssupdatemasto_new.txt
 .DS_Store
 ```
+
+### Automating it:
+* To periodically run the script I created a 'cron job' by making a 'crontab' file on my always-on Mac. It runs every hour starting at midnight. To create and amend it I started with and continue to use the vi editor, which is an experience in itself. Anyway, here it is:    
+`0 * * * * cd ~/coding/rssupdatemasto/rssupdatemasto; python3 rssupdatemasto.py`
+* I found that on a Mac one has to add cron to the list of 'Full disk access apps' - [Crontab Operation not permitted](https://apple.stackexchange.com/questions/378553/crontab-operation-not-permitted/378558#378558) (*StackExchange*).
+
+### The other script in the repository:
+* [postmastodon.py](postmastodon.py) - a short script to accept an input and post it to Mastodon.
+
+### More:
+If you want to know more, look at the following:
+* The [CHANGELOG.](CHANGELOG.md)
+* The **[rssupdatemasto.py](rssupdatemasto.py)** script itself. The comments within the code may be more useful than the documentation.
 
 ---- 
 
@@ -77,10 +82,3 @@ Each time I ran the code the following warning appeared:
 I did some digging and it appears that it's a known issue - urllib3 does not play nicely with the Python supplied by Apple - a GitHub issue here: [urllib3>=2.0 does not work with system Python on macOS](https://github.com/urllib3/urllib3/issues/3020) (*GitHub*).
 
 Well, I successfully installed Python 3.13.1 from here and the error goes away: https://www.python.org/downloads/
-
----- 
-
-### More:
-If you want to know more, look at the following:
-* The [CHANGELOG.](CHANGELOG.md)
-* The **[rssupdatemasto.py](rssupdatemasto.py)** script itself. The comments within the code may be more useful than the documentation.
