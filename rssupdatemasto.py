@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.3.2 for Python 3
+# v0.3.3 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -103,17 +103,20 @@ with open('rsssource.txt') as sources:
             p_last = basefile_r.read()
             basefile_r.close()
 
-        # Compare the post dates. If new > base, compile message & save latest over base:
+        # Compare the post dates. If new > base, compile a post:
         p_last = dateutil.parser.parse(p_last)
         p_latest = dateutil.parser.parse(p_latest)
         masto_message = ''
         if p_latest > p_last:
             masto_message = 'My new post:\n' + p_title + '\n' + p_link + hashtags
-            basefile_w = open('rssupdatemasto_base.txt', 'w')
-            basefile_w.write(p_publish)
-            basefile_w.close()
 
         # If a new feed post exists:
         if masto_message != '':
             # Create a public post using the text from masto_message:
             mastodon.status_post(masto_message)
+
+# Finally, check (may be redundant) and save the date of the latest post(s) over the previous in 'rssupdatemasto_base.txt':
+if p_latest > p_last:
+    basefile_w = open('rssupdatemasto_base.txt', 'w')
+    basefile_w.write(p_publish)
+    basefile_w.close()

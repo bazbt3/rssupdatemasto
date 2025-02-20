@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.3.3 2025-02-20:
+* Move the code to save the most recent post date outside the main loop - still comparing dates.
+
 ### v0.3.2 2025-02-18:
 * Remove the commented-out now-redundant code related to the single feed source.
 
