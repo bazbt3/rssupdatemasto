@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.3.3 for Python 3
+# v0.3.4 for Python 3
 
 # Import RSS feed parser module:
 import feedparser
@@ -45,7 +45,7 @@ with open('rsssource.txt') as sources:
         p_link = d.entries[0].link
         p_publish = d.entries[0].published
 
-        # For Reddit extract the feed title and subreddit name:
+        # Extract the feed title and subreddit name:
         # Feed title:
         try:
             p_feed = d.feed.title
@@ -60,7 +60,7 @@ with open('rsssource.txt') as sources:
         # Convert the string to a JSON dict:
         tags_dict = json.loads(tags_str)
 
-        # Check the subreddit is one of those in the file, otherwise trap the resulting error of a missing key:
+        # Check the source is one of those in the file, otherwise trap the resulting error of a missing key:
         # Format a successful match with 2 newlines to separate the tags from the taxt & address:
         try:
             # Try Reddit first:
@@ -84,11 +84,6 @@ with open('rsssource.txt') as sources:
         p_list.append(p_link)
         p_list.append(p_publish)
 
-        # Save the latest post to a file, as JSON:
-        # Commented out this section as probably redundant:
-        # with open('rssupdatemasto_new.txt', 'w') as newfile:  
-        #	json.dump(p_list, newfile)
-
         # Does an 'rssupdatemasto_base.txt' file already exist, i.e. has this program run before?
         # If it does not, create the file with its only contents as the most recent post date:
         if not os.path.exists('rssupdatemasto_base.txt'):
@@ -108,7 +103,7 @@ with open('rsssource.txt') as sources:
         p_latest = dateutil.parser.parse(p_latest)
         masto_message = ''
         if p_latest > p_last:
-            masto_message = 'My new post:\n' + p_title + '\n' + p_link + hashtags
+            masto_message = 'My new post:\n' + p_feed + '\n' + p_title + '\n' + p_link + hashtags
 
         # If a new feed post exists:
         if masto_message != '':

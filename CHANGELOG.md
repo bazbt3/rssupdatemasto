@@ -3,6 +3,10 @@
 ## Changelog
 (most recent first)
 
+### v0.3.4 2025-02-21:
+* Add feed title to post.
+* Removed more redundant, commented-out code.
+
 ### v0.3.3 2025-02-20:
 * Move the code to save the most recent post date outside the main loop - still comparing dates.
 
