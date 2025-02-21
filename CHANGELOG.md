@@ -3,8 +3,11 @@
 ## Changelog
 (most recent first)
 
+### v0.4.0 2025-02-21:
+* Added summary to non-Reddit posts. The creation of the summary (description) is currently at lines 58 to 67 and is hardcoded to omit a summary when 'submitted by bazbt3'. It would be preferable to use the source's site instead.
+
 ### v0.3.4 2025-02-21:
-* Add feed title to post.
+* Added feed title to post.
 * Removed more redundant, commented-out code.
 
 ### v0.3.3 2025-02-20:
