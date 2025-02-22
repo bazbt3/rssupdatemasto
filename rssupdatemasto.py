@@ -3,22 +3,12 @@
 # rssupdatemasto
 # v0.4.0 for Python 3
 
-# Import RSS feed parser module:
+# Import modules:
 import feedparser
-
-# Import requests module:
 import requests
-
-# Import date parser, parse:
 import dateutil.parser
-
-# Import JSON module:
 import json
-
-# Import os, used to check if files exist:
 import os
-
-# Import Mastodon Python library for interacting with Mastodon:
 from mastodon import Mastodon
 
 # Setup Mastodon authorisation:
@@ -32,13 +22,12 @@ instance = instance.strip()
 mastodon = Mastodon(access_token = token, api_base_url = instance)
 
 # Get RSS feed source from files and then the content from the Internet:
-
 # Sequentially read a multiple-line 'rsssource.txt' file - the list of feed sources - and process whatever is found according to the RSS parameter names per feed title and per post:
 with open('rsssource.txt') as sources:
     for line in sources:
         feed_title = line.strip('[]').strip()
 
-		# The 'requests...headers=' was added because Reddit requires headers:
+        # The 'requests...headers=' was added because Reddit requires headers:
         d = feedparser.parse(requests.get(feed_title, headers={'User-Agent': 'Mozilla/5.0'}).content)
         # Extract the most recent post's title, link & published date:
         p_title = d.entries[0].title
@@ -46,16 +35,17 @@ with open('rsssource.txt') as sources:
         p_publish = d.entries[0].published
         p_description = d.entries[0].description
 
-        # Extract the feed title and subreddit name:
-        # Feed title:
+        # Extract the feed title:
         try:
             p_feed = d.feed.title
         except AttributeError as error:
            p_feed = ""
-        # Subreddit name:
+
+        # Extract the subreddit name:
         p_term = d.entries[0].tags[0].term
 
-        # If the feed is not 'p_description' add a 150 character summary of the post text:
+        # If the feed is not 'submitted by bazbt3' add a 150 character summary of the post text:
+        # This does not attempt to strip out any html:
         # Try my Reddit feed first and remove the post desciption:
         # (The hardcoded test for 'submitted by bazbt3' is not ideal, but it allows for adding the 'to Reddit' suffix):
         if p_feed == 'submitted by bazbt3':
@@ -117,9 +107,8 @@ with open('rsssource.txt') as sources:
         if p_latest > p_last:
             masto_message = p_feed + '\n' + 'My new post:' + '\n' + p_title + '\n\n' + p_link + hashtags
 
-        # If a new feed post exists:
+        # If a new feed post exists then create a public post using the text from masto_message:
         if masto_message != '':
-            # Create a public post using the text from masto_message:
             mastodon.status_post(masto_message)
 
 # Finally, check (may be redundant) and save the date of the latest post(s) over the previous in 'rssupdatemasto_base.txt':
