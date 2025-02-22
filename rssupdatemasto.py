@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.4.1 for Python 3
+# v0.4.2 for Python 3
 
 # Import modules:
 import feedparser
@@ -44,17 +44,22 @@ with open('rsssource.txt') as sources:
         # Extract the subreddit name:
         p_term = d.entries[0].tags[0].term
 
-        # If the feed is not 'submitted by bazbt3' add a 150 character summary of the post text:
+        # If the feed is not 'saved by bazbt3' or 'submitted by bazbt3'add a 150 character summary of the post text:
         # This does not attempt to strip out any html:
-        # Try my Reddit feed first and remove the post desciption:
-        # (The hardcoded test for 'submitted by bazbt3' is not ideal, but it allows for adding the 'to Reddit' suffix):
-        if p_feed == 'submitted by bazbt3' or 'saved by bazbt3':
+        # Try 2 0f my Reddit feeds first and remove the post desciptions:
+        # (The hardcoded tests for posts created by me are not ideal, but allow for adding 'My new post:' & ' to Reddit'):
+        # Saved by me *from* Reddit:
+        if p_feed == 'saved by bazbt3':
             p_description = ""
-            p_feed = p_feed + " to Reddit"
-        # Add the post description to what's left:
+            p_feed = p_feed + " from Reddit:"
+        # Submitted by me *to* Reddit:
+        elif p_feed == 'submitted by bazbt3':
+            p_description = ""
+            p_feed = "My new post" + '\n' + p_feed + " to Reddit:"
+        # Add the post description to what's left, i.e. likely to be a blog post by me:
         else:
             p_description = p_description[:200] + "..."
-            p_title = p_title + '\n' + p_description
+            p_title = "My new post:" + '\n' + p_title + '\n' + p_description
 
         # Read the hashtags from the 'hashtags.txt' file:
         with open('hashtags.txt') as h: 
@@ -105,7 +110,7 @@ with open('rsssource.txt') as sources:
         p_latest = dateutil.parser.parse(p_latest)
         masto_message = ''
         if p_latest > p_last:
-            masto_message = p_feed + '\n' + 'My new post:' + '\n' + p_title + '\n\n' + p_link + hashtags
+            masto_message = p_feed + '\n' + p_title + '\n\n' + p_link + hashtags
 
         # If a new feed post exists then create a public post using the text from masto_message:
         if masto_message != '':

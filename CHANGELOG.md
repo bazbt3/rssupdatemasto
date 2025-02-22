@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.4.2 2025-02-22:
+* Expanded the tests to reformat the text based on the source, i.e. saved posts by others differ from my own content.
+
 ### v0.4.1 2025-02-22:
 * Added my Reddit *private* saved posts feed, checked by `'submitted by bazbt3' or 'saved by bazbt3'`.
 * Tidied the layout of some code and comments without altering function or order.
