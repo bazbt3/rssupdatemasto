@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.4.2 for Python 3
+# v0.4.3 for Python 3
 
 # Import modules:
 import feedparser
@@ -51,15 +51,16 @@ with open('rsssource.txt') as sources:
         # Saved by me *from* Reddit:
         if p_feed == 'saved by bazbt3':
             p_description = ""
-            p_feed = p_feed + " from Reddit:"
+            p_header = p_feed + " from Reddit:"
         # Submitted by me *to* Reddit:
         elif p_feed == 'submitted by bazbt3':
             p_description = ""
-            p_feed = "My new post" + '\n' + p_feed + " to Reddit:"
+            p_header = "My new post" + '\n' + p_feed + " to Reddit:"
         # Add the post description to what's left, i.e. likely to be a blog post by me:
         else:
             p_description = p_description[:200] + "..."
-            p_title = "My new post:" + '\n' + p_title + '\n' + p_description
+            p_header = "My new post:"
+            p_title = p_title + '\n' + p_description
 
         # Read the hashtags from the 'hashtags.txt' file:
         with open('hashtags.txt') as h: 
@@ -85,12 +86,6 @@ with open('rsssource.txt') as sources:
         # Store the date & time the most recent post was published:
         p_latest = p_publish
 
-        # Create a list of title, link & published date:
-        p_list = []
-        p_list.append(p_title)
-        p_list.append(p_link)
-        p_list.append(p_publish)
-
         # Does an 'rssupdatemasto_base.txt' file already exist, i.e. has this program run before?
         # If it does not, create the file with its only contents as the most recent post date:
         if not os.path.exists('rssupdatemasto_base.txt'):
@@ -110,7 +105,9 @@ with open('rsssource.txt') as sources:
         p_latest = dateutil.parser.parse(p_latest)
         masto_message = ''
         if p_latest > p_last:
-            masto_message = p_feed + '\n' + p_title + '\n\n' + p_link + hashtags
+            masto_message = p_header + '\n' + p_title + '\n\n' + p_link + hashtags
+
+        print(p_header + '\n' + p_title + '\n\n' + p_link + hashtags)
 
         # If a new feed post exists then create a public post using the text from masto_message:
         if masto_message != '':

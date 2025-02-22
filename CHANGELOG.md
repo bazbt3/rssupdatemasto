@@ -3,6 +3,10 @@
 ## Changelog
 (most recent first)
 
+### v0.4.3 2025-02-22:
+* Fixed formatting of posts now source check is for 3 types.
+* Removed more redundant code: the `p_list` text originally compiled to save to a file but removed a few versions ago.
+
 ### v0.4.2 2025-02-22:
 * Expanded the tests to reformat the text based on the source, i.e. saved posts by others differ from my own content.
 
