@@ -3,6 +3,10 @@
 ## Changelog
 (most recent first)
 
+### v0.4.1 2025-02-22:
+* Added my Reddit *private* saved posts feed, checked by `'submitted by bazbt3' or 'saved by bazbt3'`.
+* Tidied the layout of some code and comments without altering function or order.
+
 ### v0.4.0 2025-02-21:
 * Added summary to non-Reddit posts. The creation of the summary (description) is currently at lines 58 to 67 and is hardcoded to omit a summary when 'submitted by bazbt3'. It would be preferable to use the source's site instead.
 

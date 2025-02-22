@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.4.0 for Python 3
+# v0.4.1 for Python 3
 
 # Import modules:
 import feedparser
@@ -48,7 +48,7 @@ with open('rsssource.txt') as sources:
         # This does not attempt to strip out any html:
         # Try my Reddit feed first and remove the post desciption:
         # (The hardcoded test for 'submitted by bazbt3' is not ideal, but it allows for adding the 'to Reddit' suffix):
-        if p_feed == 'submitted by bazbt3':
+        if p_feed == 'submitted by bazbt3' or 'saved by bazbt3':
             p_description = ""
             p_feed = p_feed + " to Reddit"
         # Add the post description to what's left:
