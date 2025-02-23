@@ -51,16 +51,16 @@ with open('rsssource.txt') as sources:
         # Saved by me *from* Reddit:
         if p_feed == 'saved by bazbt3':
             p_description = ""
-            p_header = p_feed + " from Reddit:"
+            p_header = "A post " + p_feed + " from Reddit:"
         # Submitted by me *to* Reddit:
         elif p_feed == 'submitted by bazbt3':
             p_description = ""
-            p_header = "My new post" + '\n' + p_feed + " to Reddit:"
+            p_header = "My new post, " + p_feed + " to Reddit:"
         # Add the post description to what's left, i.e. likely to be a blog post by me:
         else:
             p_description = p_description[:200] + "..."
-            p_header = "My new post:"
-            p_title = p_title + '\n' + p_description
+            p_header = "My new post at " + p_feed + ":"
+            p_title = p_title + '\n\n' + p_description
 
         # Read the hashtags from the 'hashtags.txt' file:
         with open('hashtags.txt') as h: 

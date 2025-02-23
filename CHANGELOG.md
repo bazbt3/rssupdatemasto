@@ -4,7 +4,9 @@
 (most recent first)
 
 ### v0.4.4 2025-02-23:
-* Small post format change - added line between source and title.
+* Small post format changes:
+  * Show each post's source on one line, made a little friendlier.
+  * Added line between source and title.
 * Removed print of latest posts used while testing output.
 
 ### v0.4.3 2025-02-22:
