@@ -3,6 +3,10 @@
 ## Changelog
 (most recent first)
 
+### v0.4.4 2025-02-23:
+* Small post format change - added line between source and title.
+* Removed print of latest posts used while testing output.
+
 ### v0.4.3 2025-02-22:
 * Fixed formatting of posts now source check is for 3 types.
 * Removed more redundant code: the `p_list` text originally compiled to save to a file but removed a few versions ago.
