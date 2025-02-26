@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.4.5 2025-02-26:
+* Small post formatting change to 'submitted by bazbt3' to Reddit.
+
 ### v0.4.4 2025-02-23:
 * Small post format changes:
   * Show each post's source on one line, made a little friendlier.

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.4.4 for Python 3
+# v0.4.5 for Python 3
 
 # Import modules:
 import feedparser
@@ -55,7 +55,7 @@ with open('rsssource.txt') as sources:
         # Submitted by me *to* Reddit:
         elif p_feed == 'submitted by bazbt3':
             p_description = ""
-            p_header = "My new post, " + p_feed + " to Reddit:"
+            p_header = "My new post (" + p_feed + " to Reddit):"
         # Add the post description to what's left, i.e. likely to be a blog post by me:
         else:
             p_description = p_description[:200] + "..."
