@@ -21,15 +21,16 @@ instance = instance.strip()
 # Create an instance of the Mastodon class:
 mastodon = Mastodon(access_token = token, api_base_url = instance)
 
-# Get RSS feed source from files and then the content from the Internet:
-# Sequentially read a multiple-line 'rsssource.txt' file - the list of feed sources - and process whatever is found according to the RSS parameter names per feed title and per post:
+# Get RSS feed sources from a file and then the content from the Internet:
+# Sequentially read a multiple-line 'rsssource.txt' file - the list of feed sources:
+# Process whatever is found according to the RSS parameter names, per feed title and per post:
 with open('rsssource.txt') as sources:
     for line in sources:
         feed_title = line.strip('[]').strip()
 
         # The 'requests...headers=' was added because Reddit requires headers:
         d = feedparser.parse(requests.get(feed_title, headers={'User-Agent': 'Mozilla/5.0'}).content)
-        # Extract the most recent post's title, link & published date:
+        # Extract the most recent post's title, link published date and description:
         p_title = d.entries[0].title
         p_link = d.entries[0].link
         p_publish = d.entries[0].published
@@ -44,10 +45,10 @@ with open('rsssource.txt') as sources:
         # Extract the subreddit name:
         p_term = d.entries[0].tags[0].term
 
-        # If the feed is not 'saved by bazbt3' or 'submitted by bazbt3'add a 150 character summary of the post text:
-        # This does not attempt to strip out any html:
-        # Try 2 0f my Reddit feeds first and remove the post desciptions:
-        # (The hardcoded tests for posts created by me are not ideal, but allow for adding 'My new post:' & ' to Reddit'):
+        # If the feed is not 'saved by bazbt3' or 'submitted by bazbt3' add a 'n' character summary of the post text:
+        # This does not attempt to strip out any html starting within the first 'n':
+        # Try 2 of my Reddit feeds first and remove the post descriptions:
+        # (Hardcoding the tests for posts created by me are not ideal, but allow for adding 'My new post:' & ' to Reddit'):
         # Saved by me *from* Reddit:
         if p_feed == 'saved by bazbt3':
             p_description = ""
@@ -57,6 +58,7 @@ with open('rsssource.txt') as sources:
             p_description = ""
             p_header = "My new post (" + p_feed + " to Reddit):"
         # Add the post description to what's left, i.e. likely to be a blog post by me:
+        # In this case 'n' = 200 characters:
         else:
             p_description = p_description[:200] + "..."
             p_header = "My new post at " + p_feed + ":"
@@ -79,14 +81,14 @@ with open('rsssource.txt') as sources:
             except:
                 tags_dict[p_feed]
                 hashtags = "\n\n" + tags_dict[p_feed]
-        # And if tg previous 2 fail, trap the error and do not add hashtags:
+        # And if the previous 2 fail, trap the error and do not add hashtags:
         except KeyError as error:
             hashtags = ""
 
         # Store the date & time the most recent post was published:
         p_latest = p_publish
 
-        # Does an 'rssupdatemasto_base.txt' file already exist, i.e. has this program run before?
+        # Does an 'rssupdatemasto_base.txt' file already exist, i.e. has this script run before?
         # If it does not, create the file with its only contents as the most recent post date:
         if not os.path.exists('rssupdatemasto_base.txt'):
             basefile_w = open('rssupdatemasto_base.txt', 'w')
