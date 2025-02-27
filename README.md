@@ -3,7 +3,7 @@
 # What is 'rssupdatemasto'?
 A Python 3 application to post to Mastodon when nominated RSS feeds are updated.
 
-The application is currently being tested on my Mac. Whilst it can run standalone it's more likely to be useful when run automatically and periodically as a cron job on a server or at a dedicated web host.
+The application is currently tested on my Mac. Whilst it can run standalone it's more likely to be useful when run automatically and periodically as a cron job on a server or at a dedicated web host.
 
 ### Calling it from the command line:
 `python3 rssupdatemasto.py`.
@@ -15,10 +15,15 @@ The application is currently being tested on my Mac. Whilst it can run standalon
 * My Python also did not have the feedparser module, so: `pip3 install feedparser`.
 
 ### Setup at your instance:
-* A new 'application' must be created at your instance for your Python script - created whilst signed in. Go to `https://YourInstanceName/settings/applications/` and press the 'New application' button. Take educated guesses based on reading the help found elsewhere. You only need two Scopes checked: `write:statuses` and *(maybe!)* `profile`.
+A new 'application' must be created at your instance for your Python script - created whilst signed in. Take educated guesses based on reading the help you can find elsewhere.
+1. Go to `https://{YourInstanceName}/settings/applications/` and press the 'New application' button,
+2. Give it a snappy application name,
+3. If you have a web site you intend to document the app at, add its address.
+4. I left the redirect URI untouched.
+5. You probably only need 1 Scope checked: `write:statuses` (and *maybe!* `profile`).
 
 ### The configuration files you must create:
-* **`masto_app_token.txt`** - a file containing the Mastodon application token obtained from above. It must be only one line. **This token MUST remain secret from others**. (It is read from a separate file to give some portability to the code). An example of how it might look:
+* **`masto_app_token.txt`** - a file containing the Mastodon application token obtained after creating your application. It must be only one line. **This token MUST remain secret from others**. (It is read from a separate file to give some portability to the code). An example of how it might look:
 ```
    y0UWilllik3pLay1ngW1ththiSAppForIt8r1n6sjOy
 ```
@@ -38,11 +43,11 @@ For posts in r/Browns, `term="Browns" label="r/Browns"`, so use `"Browns"`.
     "FuckModell": "#NFL #Browns #History",
     "spacebrowns": "#NFL #Browns"}
 ```
-Note: I *chose* to use this method of displaying the data within the `hashtags` file. (Using an `.ini` with `configparser` one must make the values lower case throughout - configparser converts the key's text to lower case, thus never matching the `term` value).
+Note: I *chose* to use this method of displaying the data within the `hashtags` file. (Do't bother using an `.ini` with `configparser` - configparser converts the key's text to lower case, thus never matching the `term` value for instance).
 
 ### Files the script creates:
 The code itself creates one file, which can be safely removed *while testing*, but which is necessary to create and retain a history:
-* `rssupdatemasto_base.txt` - the most recent post date, which must be retained to check if any later posts appear.
+* `rssupdatemasto_base.txt` - the most recent post date, which must be retained to check if any later posts appear. If editing the date and time while testing, do not omit the time zone offset (e.g. `+0000`) - the script will fail with an error that comparing two different formats is not allowed.
 
 ### An example .gitignore file if saving this into a remote public repository:
 ```
@@ -57,7 +62,7 @@ rssupdatemasto_new.txt
 ```
 
 ### Automating it:
-* To periodically run the script I created a 'cron job' by making a 'crontab' file on my always-on Mac. It runs every hour starting at midnight. To create and amend it I started with and continue to use the vi editor, which is an experience in itself. Anyway, here it is:    
+* To periodically run the script I created a 'cron job' by making a 'crontab' file on my always-on Mac. Mine runs every hour starting at midnight. To create and amend it I started with and continue to use the vi editor, which is an experience in itself. Anyway, here it is:    
 `0 * * * * cd ~/coding/rssupdatemasto/rssupdatemasto; python3 rssupdatemasto.py`
 * I found that on a Mac one has to add cron to the list of 'Full disk access apps' - [Crontab Operation not permitted](https://apple.stackexchange.com/questions/378553/crontab-operation-not-permitted/378558#378558) (*StackExchange*).
 
