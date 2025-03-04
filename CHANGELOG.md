@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.4.7 2025-03-04:
+* A very minor formatting update to the preamble for posts I save at Reddit.
+
 ### v0.4.6 2025-03-04:
 * Fixed appearance of multiple identical posts.
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.4.6 for Python 3
+# v0.4.7 for Python 3
 
 # Import modules:
 import feedparser
@@ -50,10 +50,10 @@ with open('rsssource.txt') as sources:
         # This does not attempt to strip out any html starting within the first 'n':
         # Try 2 of my Reddit feeds first and remove the post descriptions:
         # (Hardcoding the tests for posts created by me are not ideal, but allow for adding 'My new post:' & ' to Reddit'):
-        # Saved by me *from* Reddit:
+        # Saved by me, *from* Reddit:
         if p_feed == 'saved by bazbt3':
             p_description = ""
-            p_header = "A post " + p_feed + " from Reddit:"
+            p_header = "A post " + p_feed + ", from Reddit:"
         # Submitted by me *to* Reddit:
         elif p_feed == 'submitted by bazbt3':
             p_description = ""
