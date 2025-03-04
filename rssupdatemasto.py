@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.4.5 for Python 3
+# v0.4.6 for Python 3
 
 # Import modules:
 import feedparser
 import requests
 import dateutil.parser
+import datetime
 import json
 import os
 from mastodon import Mastodon
@@ -102,7 +103,7 @@ with open('rsssource.txt') as sources:
             p_last = basefile_r.read()
             basefile_r.close()
 
-        # Compare the post dates. If new > base, compile a post:
+        # Compare the post dates. If latest > last, compile a post, set the posted flag to True:
         p_last = dateutil.parser.parse(p_last)
         p_latest = dateutil.parser.parse(p_latest)
         masto_message = ''
@@ -113,8 +114,9 @@ with open('rsssource.txt') as sources:
         if masto_message != '':
             mastodon.status_post(masto_message)
 
-# Finally, check (may be redundant) and save the date of the latest post(s) over the previous in 'rssupdatemasto_base.txt':
-if p_latest > p_last:
-    basefile_w = open('rssupdatemasto_base.txt', 'w')
-    basefile_w.write(p_publish)
-    basefile_w.close()
+# Finally save the current date over the previous in 'rssupdatemasto_base.txt':
+now = datetime.datetime.now(datetime.timezone.utc)
+now_formatted = now.strftime('%a, %d %b %Y %H:%M:%S %z')
+basefile_w = open('rssupdatemasto_base.txt', 'w')
+basefile_w.write(now_formatted)
+basefile_w.close()

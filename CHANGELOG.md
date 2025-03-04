@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.4.6 2025-03-04:
+* Fixed appearance of multiple identical posts.
+
 ### v0.4.5 2025-02-26:
 * Small post formatting change to 'submitted by bazbt3' to Reddit.
 
