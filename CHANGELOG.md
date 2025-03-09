@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.4.8 2025-03-09:
+* Added a `posted` flag to only save the last checked date to file if a post has been made when the script runs.
+
 ### v0.4.7 2025-03-04:
 * A very minor formatting update to the preamble for posts I save at Reddit.
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.4.7 for Python 3
+# v0.4.8 for Python 3
 
 # Import modules:
 import feedparser
@@ -21,6 +21,9 @@ instance = instancefile.read()
 instance = instance.strip()
 # Create an instance of the Mastodon class:
 mastodon = Mastodon(access_token = token, api_base_url = instance)
+
+# Set a 'posted' flag to False - used to check if any feed has a new post:
+posted = False
 
 # Get RSS feed sources from a file and then the content from the Internet:
 # Sequentially read a multiple-line 'rsssource.txt' file - the list of feed sources:
@@ -112,11 +115,13 @@ with open('rsssource.txt') as sources:
 
         # If a new feed post exists then create a public post using the text from masto_message:
         if masto_message != '':
+            posted = True
             mastodon.status_post(masto_message)
 
 # Finally save the current date over the previous in 'rssupdatemasto_base.txt':
-now = datetime.datetime.now(datetime.timezone.utc)
-now_formatted = now.strftime('%a, %d %b %Y %H:%M:%S %z')
-basefile_w = open('rssupdatemasto_base.txt', 'w')
-basefile_w.write(now_formatted)
-basefile_w.close()
+If posted == True:
+    now = datetime.datetime.now(datetime.timezone.utc)
+    now_formatted = now.strftime('%a, %d %b %Y %H:%M:%S %z')
+    basefile_w = open('rssupdatemasto_base.txt', 'w')
+    basefile_w.write(now_formatted)
+    basefile_w.close()
