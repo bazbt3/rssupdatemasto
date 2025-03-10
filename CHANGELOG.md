@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.4.9 2025-03-10:
+* Fixed upper case keyword in test if a post has been made - 'If' instead of `if`.
+
 ### v0.4.8 2025-03-09:
 * Added a `posted` flag to only save the last checked date to file if a post has been made when the script runs.
 

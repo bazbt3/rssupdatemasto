@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.4.8 for Python 3
+# v0.4.9 for Python 3
 
 # Import modules:
 import feedparser
@@ -118,8 +118,8 @@ with open('rsssource.txt') as sources:
             posted = True
             mastodon.status_post(masto_message)
 
-# Finally save the current date over the previous in 'rssupdatemasto_base.txt':
-If posted == True:
+# Finally, if a post has been made save the current date over the previous in 'rssupdatemasto_base.txt':
+if posted == True:
     now = datetime.datetime.now(datetime.timezone.utc)
     now_formatted = now.strftime('%a, %d %b %Y %H:%M:%S %z')
     basefile_w = open('rssupdatemasto_base.txt', 'w')
