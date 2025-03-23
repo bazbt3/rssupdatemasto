@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.4.10 for Python 3
+# v0.4.11 for Python 3
 
 # Import modules:
 import feedparser
@@ -62,9 +62,9 @@ with open('rsssource.txt') as sources:
             p_description = ""
             p_header = "My new post (" + p_feed + " to Reddit):"
         # Add the post description to what's left, i.e. likely to be a blog post by me:
-        # In this case 'n' = 200 characters:
+        # In this case 'n' = 225 characters:
         else:
-            p_description = p_description[:200] + "..."
+            p_description = p_description[:225] + "..."
             p_header = "My new post at " + p_feed + ":"
             p_title = p_title + '\n\n' + p_description
 
@@ -112,6 +112,7 @@ with open('rsssource.txt') as sources:
         masto_message = ''
         if p_latest > p_last:
             masto_message = p_header + '\n\n' + p_title + '\n\n' + p_link + hashtags
+            # Replace WordPress single and double smart quotes with simple ones
             masto_message = masto_message.replace('&#8216;',"'")
             masto_message = masto_message.replace('&#8217;',"'")
             masto_message = masto_message.replace('&#8220;','"')

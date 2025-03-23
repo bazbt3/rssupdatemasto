@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.4.11 2025-03-23:
+* Added 25 characters to my blog post character summary limit.
+
 ### v0.4.10 2025-03-23:
 * Fixed WordPress smart quotes - simplifying apostrophes and double quote marks from curly to non-curly.
 
