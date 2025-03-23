@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.4.9 for Python 3
+# v0.4.10 for Python 3
 
 # Import modules:
 import feedparser
@@ -112,6 +112,10 @@ with open('rsssource.txt') as sources:
         masto_message = ''
         if p_latest > p_last:
             masto_message = p_header + '\n\n' + p_title + '\n\n' + p_link + hashtags
+            masto_message = masto_message.replace('&#8216;',"'")
+            masto_message = masto_message.replace('&#8217;',"'")
+            masto_message = masto_message.replace('&#8220;','"')
+            masto_message = masto_message.replace('&#8221;','"')
 
         # If a new feed post exists then create a public post using the text from masto_message:
         if masto_message != '':

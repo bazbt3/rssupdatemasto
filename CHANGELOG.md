@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.4.10 2025-03-23:
+* Fixed WordPress smart quotes - simplifying apostrophes and double quote marks from curly to non-curly.
+
 ### v0.4.9 2025-03-10:
 * Fixed upper case keyword in test if a post has been made - 'If' instead of `if`.
 
