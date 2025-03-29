@@ -3,6 +3,10 @@
 ## Changelog
 (most recent first)
 
+### v0.4.12 2025-03-29:
+* Increased 'blog post' entry summary to 300 characters - the practical limit before the current Wordpress 'read more' limit at my blog.
+* Added `testpublished.py` to .gitignore - locally examining `feedparser` feed content elements.
+
 ### v0.4.11 2025-03-23:
 * Added 25 characters to my blog post character summary limit.
 

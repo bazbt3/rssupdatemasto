@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.4.11 for Python 3
+# v0.4.12 for Python 3
 
 # Import modules:
 import feedparser
@@ -49,22 +49,22 @@ with open('rsssource.txt') as sources:
         # Extract the subreddit name:
         p_term = d.entries[0].tags[0].term
 
-        # If the feed is not 'saved by bazbt3' or 'submitted by bazbt3' add a 'n' character summary of the post text:
-        # This does not attempt to strip out any html starting within the first 'n':
+        # If the feed is not 'saved by bazbt3' or 'submitted by bazbt3' add an `n` character summary of the post text:
+        # This does not attempt to strip out any html starting within the first `n`:
         # Try 2 of my Reddit feeds first and remove the post descriptions:
         # (Hardcoding the tests for posts created by me are not ideal, but allow for adding 'My new post:' & ' to Reddit'):
         # Saved by me, *from* Reddit:
         if p_feed == 'saved by bazbt3':
             p_description = ""
-            p_header = "A post " + p_feed + ", from Reddit:"
+            p_header = "A post " + p_feed + " from Reddit:"
         # Submitted by me *to* Reddit:
         elif p_feed == 'submitted by bazbt3':
             p_description = ""
             p_header = "My new post (" + p_feed + " to Reddit):"
         # Add the post description to what's left, i.e. likely to be a blog post by me:
-        # In this case 'n' = 225 characters:
+        # In this case 'n' = 300 characters:
         else:
-            p_description = p_description[:225] + "..."
+            p_description = p_description[:300] + "..."
             p_header = "My new post at " + p_feed + ":"
             p_title = p_title + '\n\n' + p_description
 
@@ -112,7 +112,7 @@ with open('rsssource.txt') as sources:
         masto_message = ''
         if p_latest > p_last:
             masto_message = p_header + '\n\n' + p_title + '\n\n' + p_link + hashtags
-            # Replace WordPress single and double smart quotes with simple ones
+            # Replace WordPress single and double smart quotes with simple ones:
             masto_message = masto_message.replace('&#8216;',"'")
             masto_message = masto_message.replace('&#8217;',"'")
             masto_message = masto_message.replace('&#8220;','"')
