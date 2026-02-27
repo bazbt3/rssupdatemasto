@@ -3,6 +3,9 @@
 ## Changelog
 (most recent first)
 
+### v0.4.13 2026-02-27:
+* Replace WordPress dash with simple dash - `&#8211;` replaced by "-".
+
 ### v0.4.12 2025-03-29:
 * Increased 'blog post' entry summary to 300 characters - the practical limit before the current Wordpress 'read more' limit at my blog.
 * Added `testpublished.py` to .gitignore - locally examining `feedparser` feed content elements.

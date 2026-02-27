@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # rssupdatemasto
-# v0.4.12 for Python 3
+# v0.4.13 for Python 3
 
 # Import modules:
 import feedparser
@@ -112,6 +112,8 @@ with open('rsssource.txt') as sources:
         masto_message = ''
         if p_latest > p_last:
             masto_message = p_header + '\n\n' + p_title + '\n\n' + p_link + hashtags
+            # Replace WordPress dash with simple dash:
+            masto_message = masto_message.replace('&#8211;',"-")
             # Replace WordPress single and double smart quotes with simple ones:
             masto_message = masto_message.replace('&#8216;',"'")
             masto_message = masto_message.replace('&#8217;',"'")
