@@ -5,6 +5,7 @@
 
 ### v0.4.13 2026-02-27:
 * Replace WordPress dash with simple dash - `&#8211;` replaced by "-".
+* Updated `CHANGELOG.md`, mentioning that Reddit feeds now repeatedly break the script.
 
 ### v0.4.12 2025-03-29:
 * Increased 'blog post' entry summary to 300 characters - the practical limit before the current Wordpress 'read more' limit at my blog.

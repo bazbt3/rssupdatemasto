@@ -3,7 +3,10 @@
 # What is 'rssupdatemasto'?
 A Python 3 application to post to Mastodon when nominated RSS feeds are updated.
 
-The application is currently tested on my Mac. Whilst it can run standalone it's more likely to be useful when run automatically and periodically as a cron job on a server or at a dedicated web host.
+The application is currently tested on my Mac. Whilst it can run standalone it's more likely to be useful when run automatically and periodically as a cron job on an always-on machine, a server or at a dedicated web host.
+
+### A note worth reading before starting:
+Although initially tested with Reddit RSS feeds and although Reddit is mentioned a few times, the script repeatedly breaks - although with nothing else I've checked so far. (For Reddit feeds alone I'm using EchoFeed - https://echofeed.app - a flexible read and post service by Robb Knight).
 
 ### Calling it from the command line:
 `python3 rssupdatemasto.py`.
